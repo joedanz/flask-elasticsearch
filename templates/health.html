@@ -10,24 +10,6 @@
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
 
-    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
-    <script src="{{ url_for('static', filename='locache.js') }}"></script>
-    <script>
-      $(function() {
-        var result = locache.get('history');
-        if (result != null) {
-          var items = result.split('|');
-          for (i = 0; i < items.length; i++) {
-            $('#history').append('<li><a href="/search/'+items[i]+'">'+items[i]+'</a></li>');
-          }
-        }
-        $('.clear').click(function() {
-          locache.remove('history');
-          $('#history').html('');
-        });
-      });
-    </script>
-
     <!-- Custom styles for this template -->
     <style>
       body {
@@ -56,8 +38,8 @@
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
             <li><a href="/">Search</a></li>
-            <li class="active"><a href="/history">History</a></li>
-            <li><a href="/health">Health</a></li>
+            <li><a href="/history">History</a></li>
+            <li class="active"><a href="/health">Health</a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
@@ -69,8 +51,8 @@
         <h1>Project Gutenbert Search</h1>
         <p class="lead">Search lots of books using AWS Elastic Search.</p>
 
-        <h2>Search History <small>(<a href="#" class="clear">Clear</a>)</small></h2>
-        <div id="history"></div>
+        <h2>ElasticSearch Health</h2>
+        <pre>{{ res }}</pre>
       </div>
 
     </div><!-- /.container -->
