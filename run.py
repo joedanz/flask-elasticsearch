@@ -6,7 +6,8 @@ from flask import g, render_template, request
 from flask_esclient import ESClient
 
 app = Flask(__name__)
-app.config['ELASTICSEARCH_URL'] = 'http://127.0.0.1:9200/'
+#app.config['ELASTICSEARCH_URL'] = 'http://127.0.0.1:9200/'
+app.config['ELASTICSEARCH_URL'] = 'http://Hackerati-ES-LB-US-East-741975459.us-east-1.elb.amazonaws.com:9200/'
 esclient = ESClient(app)
 
 @app.route("/")
@@ -41,6 +42,13 @@ def search():
 def search_history(search_term):
     res = esclient.connection.search(indexes=["gutenberg"], query_body={"query": {"multi_match" : { "query": search_term, "fields": ["title", "content"] }}})
     return render_template('results.html', res=res)
+
+@app.route('/health')
+def health():
+    urlToCall = app.config['ELASTICSEARCH_URL'] + '_cluster/health?pretty=true'
+    req = urllib2.Request(urlToCall)
+    res = urllib2.urlopen(req)
+    return render_template('health.html', res=res.read())
 
 @app.route('/history')
 def history():
