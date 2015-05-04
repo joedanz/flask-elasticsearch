@@ -60,10 +60,3 @@ def history():
 def include(filename):
     if os.path.exists(filename):
         execfile(filename)
-
-if __name__ == "__main__":
-    app.run(
-    host="0.0.0.0",
-    port=int("5000"),
-    debug=True
-    )
