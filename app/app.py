@@ -60,3 +60,6 @@ def history():
 def include(filename):
     if os.path.exists(filename):
         execfile(filename)
+
+if __name__ == '__main__':
+    app.run(debug=True)
