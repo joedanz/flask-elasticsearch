@@ -17,7 +17,7 @@ def home():
 @app.route('/seed')
 def add_document():
     esclient.connection.delete_index("gutenberg")
-    include('booklist.py')
+    include('booklist_local.py')
     id = 0
     for book in g.books:
         id += 1
@@ -46,9 +46,12 @@ def search_history(search_term):
 @app.route('/health')
 def health():
     urlToCall = app.config['ELASTICSEARCH_URL'] + '_cluster/health?pretty=true'
-    req = urllib2.Request(urlToCall)
-    res = urllib2.urlopen(req)
-    return render_template('health.html', res=res.read())
+    try:
+        req = urllib2.Request(urlToCall)
+        res = urllib2.urlopen(req)
+        return render_template('health.html', res=res.read())
+    except:
+        return render_template('health.html', res="ERROR: Can't find any ElasticSearch servers.")
 
 @app.route('/history')
 def history():
