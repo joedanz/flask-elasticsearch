@@ -44,7 +44,7 @@ def search():
 @app.route('/search/<search_term>', methods=['GET'])
 def search_history(search_term):
     res = esclient.connection.search(indexes=["gutenberg"], query_body={"query": {"multi_match" : { "query": search_term, "fields": ["title", "content"] }}})
-    return render_template('results.html', res=res, term=<search_term>)
+    return render_template('results.html', res=res, term=search_term)
 
 @app.route('/health')
 def health():
