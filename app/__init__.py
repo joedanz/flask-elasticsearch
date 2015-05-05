@@ -17,7 +17,7 @@ def home():
 @app.route('/seed')
 def add_document():
     esclient.connection.delete_index("gutenberg")
-    include('booklist_local.py')
+    include('booklist.py')
     id = 0
     for book in g.books:
         id += 1
