@@ -25,7 +25,7 @@ def add_document():
         res = urllib2.urlopen(req)
         data = {
           "title": book[0],
-          "url": book[1],
+          "bookurl": book[1],
           "content": res.read()
         }
         esclient.connection.index("gutenberg","book",body=data,docid=id)

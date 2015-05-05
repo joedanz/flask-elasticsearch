@@ -81,7 +81,7 @@
 
       <ol>
       {% for hit in res['hits']['hits'] %}
-        <li><a href="{{ hit['_source']['url'] }}" target="_new">{{ hit['_source']['title'] }}</a></li>
+        <li><a href="{{ hit['_source']['bookurl'] }}" target="_new">{{ hit['_source']['title'] }}</a></li>
       {% endfor %}
       </ol>
 
