@@ -1,5 +1,6 @@
 import os
 import json
+import time
 import urllib2
 from flask import Flask
 from flask import g, render_template, request
@@ -29,7 +30,8 @@ def add_document():
           "content": res.read()
         }
         esclient.connection.index("gutenberg","book",body=data,docid=id)
-        esclient.connection.refresh(index="gutenberg")
+        time.sleep(1)
+    esclient.connection.refresh(index="gutenberg")
     return render_template('index.html')
 
 @app.route('/search', methods=['POST'])
