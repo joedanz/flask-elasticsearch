@@ -39,12 +39,12 @@ def search():
     search_term = request.form['search']
     #res = esclient.connection.search(indexes=["gutenberg"], query_body={"query": {"match_all": {}}})
     res = esclient.connection.search(indexes=["gutenberg"], query_body={"query": {"multi_match" : { "query": search_term, "fields": ["title", "content"] }}})
-    return render_template('results.html', res=res)
+    return render_template('results.html', res=res, term=search_term)
 
 @app.route('/search/<search_term>', methods=['GET'])
 def search_history(search_term):
     res = esclient.connection.search(indexes=["gutenberg"], query_body={"query": {"multi_match" : { "query": search_term, "fields": ["title", "content"] }}})
-    return render_template('results.html', res=res)
+    return render_template('results.html', res=res, term=<search_term>)
 
 @app.route('/health')
 def health():
