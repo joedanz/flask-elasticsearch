@@ -59,12 +59,12 @@ def add_document():
 def search():
     search_term = request.form['search']
     #res = es.search(index="gutenberg", body={"query": {"match_all": {}}})
-    res = es.search(index="gutenberg", body={"query": {"multi_match" : { "query": search_term, "fields": ["title", "content"] }}})
+    res = es.search(index="gutenberg", size=20, body={"query": {"multi_match" : { "query": search_term, "fields": ["title", "content"] }}})
     return render_template('results.html', res=res, term=search_term)
 
 @app.route('/search/<search_term>', methods=['GET'])
 def search_history(search_term):
-    res = es.search(index="gutenberg", body={"query": {"multi_match" : { "query": search_term, "fields": ["title", "content"] }}})
+    res = es.search(index="gutenberg", size=20, body={"query": {"multi_match" : { "query": search_term, "fields": ["title", "content"] }}})
     return render_template('results.html', res=res, term=search_term)
 
 @app.route('/health')
