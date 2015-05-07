@@ -9,6 +9,7 @@ from flask_esclient import ESClient
 app = Flask(__name__)
 #app.config['ELASTICSEARCH_URL'] = 'http://127.0.0.1:9200/'
 app.config['ELASTICSEARCH_URL'] = 'http://elasticsearch.ticc.net:9200/'
+app.config['DEBUG'] = True
 esclient = ESClient(app)
 
 @app.route("/")
