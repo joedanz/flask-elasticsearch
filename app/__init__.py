@@ -7,7 +7,7 @@ from elasticsearch import Elasticsearch
 
 app = Flask(__name__)
 #app.config['ELASTICSEARCH_URL'] = 'http://127.0.0.1:9200/'
-app.config['ELASTICSEARCH_URL'] = 'http://elasticsearch.ticc.net:9200/'
+app.config['ELASTICSEARCH_URL'] = 'http://52.4.204.9:9200/'
 app.config['DEBUG'] = True
 es = Elasticsearch([app.config['ELASTICSEARCH_URL']])
 
